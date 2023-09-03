@@ -67,7 +67,7 @@ import { ElMessage } from "element-plus";
 import Verify from "@/components/verifition/Verify.vue";
 import router from "@/router";
 import MD5 from "@/utils/md5";
-import { LoginRegisterApi } from "@/api/ucenter";
+import { LoginRegisterApi, LOGIN_URL } from "@/api/ucenter";
 interface State {
   loginForm: {
     username: string;
@@ -130,7 +130,12 @@ export default {
                 let userVo: any = data.obj;
                 window.localStorage.setItem("userName", userVo.userName);
                 window.localStorage.setItem("avatar", userVo.avatar);
-                router.push({ path: "/home" });
+                let redirect = router.currentRoute.value.query.redirect
+                if(redirect){
+                  window.location.href = redirect + '';
+                }else {
+                  router.push({ path: "/home" });
+                }
               } else {
                 ElMessage.error(data.msg);
               }

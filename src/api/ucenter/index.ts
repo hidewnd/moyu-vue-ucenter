@@ -1,5 +1,6 @@
 import request from '@/utils/request'
 
+export const LOGIN_URL = "http://localhost:3000";
 export function LoginRegisterApi(){
   return {
     // 登录
@@ -39,7 +40,7 @@ export function LoginRegisterApi(){
         data: params,
         method: 'post'
       })
-    }
+    },
   }
   
 }
